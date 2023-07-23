@@ -74,4 +74,10 @@ public class ItemController {
 
     return itemResponse;
   }
+
+  @DeleteMapping("/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void doDelete(@PathVariable int id) {
+    boolean ret = itemMapper.delete(id);
+  }
 }
