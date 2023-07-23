@@ -12,4 +12,5 @@ public interface ItemMapper {
   List<Item> findAll();
   int insert(@Param("item") Item item);
   int update(@Param("item") Item item);
+  boolean delete(int id);
 }
