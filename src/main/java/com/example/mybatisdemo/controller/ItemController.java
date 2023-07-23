@@ -1,5 +1,6 @@
 package com.example.mybatisdemo.controller;
 
+import com.example.mybatisdemo.dto.ItemRequest;
 import com.example.mybatisdemo.dto.ItemResponse;
 import com.example.mybatisdemo.entity.Item;
 import com.example.mybatisdemo.mapper.ItemMapper;
@@ -44,5 +45,33 @@ public class ItemController {
     });
 
     return itemResponsesList;
+  }
+
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public ItemResponse doPost(@RequestBody ItemRequest itemRequest) {
+    Item item = new Item();
+    BeanUtils.copyProperties(itemRequest, item);
+
+    int ret = itemMapper.insert(item);
+
+    ItemResponse itemResponse = new ItemResponse();
+    BeanUtils.copyProperties(item, itemResponse);
+
+    return itemResponse;
+  }
+
+  @PutMapping("/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public ItemResponse doPut(@PathVariable int id, @RequestBody ItemRequest itemRequest) {
+    Item item = new Item();
+    BeanUtils.copyProperties(itemRequest, item);
+    item.setId(id);
+    itemMapper.update(item);
+
+    ItemResponse itemResponse = new ItemResponse();
+    BeanUtils.copyProperties(item, itemResponse);
+
+    return itemResponse;
   }
 }
