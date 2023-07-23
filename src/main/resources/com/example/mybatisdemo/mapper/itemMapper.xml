@@ -7,4 +7,10 @@
     <select id="findAll" resultType="com.example.mybatisdemo.entity.Item">
         select * from item order by id asc
     </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into item (item_name) values (#{item.itemName})
+    </insert>
+    <update id="update">
+        update item set item_name = #{item.itemName} where id = #{item.id}
+    </update>
 </mapper>
