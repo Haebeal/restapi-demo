@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mybatisdemo.mapper.ItemMapper">
     <select id="findById" resultType="com.example.mybatisdemo.entity.Item">
-        select i.id , i.item_name from item i where i.id  = #{id}
+        select * from item where id = #{id}
+    </select>
+    <select id="findAll" resultType="com.example.mybatisdemo.entity.Item">
+        select * from item order by id asc
     </select>
 </mapper>
