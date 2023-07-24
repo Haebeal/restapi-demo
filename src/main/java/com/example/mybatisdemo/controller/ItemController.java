@@ -7,6 +7,7 @@ import com.example.mybatisdemo.mapper.ItemMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class ItemController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
+  @Transactional
   public ItemResponse doPost(@RequestBody ItemRequest itemRequest) {
     Item item = new Item();
     BeanUtils.copyProperties(itemRequest, item);
@@ -63,6 +65,7 @@ public class ItemController {
 
   @PutMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
+  @Transactional
   public ItemResponse doPut(@PathVariable int id, @RequestBody ItemRequest itemRequest) {
     Item item = new Item();
     BeanUtils.copyProperties(itemRequest, item);
