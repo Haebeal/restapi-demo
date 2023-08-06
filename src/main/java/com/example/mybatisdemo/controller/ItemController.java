@@ -22,6 +22,7 @@ public class ItemController {
 
   @GetMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
+  @CrossOrigin(origins = "http://localhost:3000")
   public ItemResponse findById(@PathVariable int id) {
     // DBからidをキーにデータ取得
     Item item = itemMapper.findById(id);
