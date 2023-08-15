@@ -8,7 +8,7 @@ services:
       - "5432:5432"
     volumes:
       - type: bind
-        source: ./db
+        source: ./data
         target: /var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: root
